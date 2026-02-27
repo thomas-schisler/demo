@@ -1,0 +1,164 @@
+::selection {
+    background-color: var(--m2);
+    color: var(--sf);
+}
+
+%headers {
+    margin: 0;
+    padding: 0;
+    font-family: var(--sans);
+    > strong {
+        font-weight: bolder;
+    }
+}
+h1 {
+    @extend %headers;
+    font-weight: 900;
+}
+h2 {
+    @extend %headers;
+    margin-block-end: 10px;
+    font-weight: 700;
+}
+h3 {
+    @extend %headers;
+    font-weight: 400;
+    color: var(--s1);
+}
+h4 {
+    @extend %headers;
+    font-weight: 600;
+    margin-block-end: 0.75rem;
+}
+h5 {
+    @extend %headers;
+}
+h6 {
+    @extend %headers;
+}
+
+p {
+    margin: 0 0 var(--fontsize) 0;
+    padding: 0;
+}
+
+strong,
+em {
+    color: var(--s2);
+}
+
+ul {
+    margin: 0;
+    padding: 0 0 0 1rem;
+    list-style-type: none;
+    > li {
+        margin: 0;
+        padding: 0 0 0 0.25rem;
+        &::marker {
+            content: "\25C9";
+            font-size: 0.75rem;
+            color: var(--m2);
+        }
+
+        strong {
+            font-weight: bolder;
+        }
+        em {
+            font-style: normal;
+            font-weight: 300;
+        }
+    }
+}
+
+ol {
+    margin: 0;
+    padding: 0 0 0 1rem;
+    li {
+        margin: 0;
+        padding: 0 0 0 0.25rem;
+        &::marker {
+            color: var(--m2);
+        }
+    }
+}
+
+details {
+    margin: 0 0 0.5rem 0;
+    padding: 0;
+}
+
+dl {
+    transition: height var(--transtime) var(--transeffect);
+    dt {
+        font-weight: 600;
+        margin: 0;
+    }
+    dd {
+        margin: 0 0 10px 0;
+    }
+}
+
+a {
+    color: var(--m1);
+    transition: all 0.25s;
+    &:hover,
+    &:focus {
+        color: var(--m2);
+    }
+    @media print {
+        &.screen-only {
+            display: none;
+        }
+    }
+}
+
+blockquote {
+    max-width: 70ch;
+    padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+    box-shadow: inset 0.25rem 0 0 0 var(--m2);
+}
+
+table {
+    margin: 0 0 0.5rem 0;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    tr {
+        &:nth-child(even) {
+            background-color: var(--s3);
+        }
+        &:nth-child(odd) {
+            background-color: var(--s);
+        }
+    }
+    th,
+    td {
+        margin: 0;
+        padding: 0.5rem;
+        text-align: left;
+        border-bottom: 1px solid var(--s3);
+    }
+}
+
+// ======================================
+// progress bar
+// ======================================
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 10px;
+    background: var(--m2);
+    animation: grow-progress linear;
+    animation-timeline: scroll();
+}
+
+@keyframes grow-progress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}

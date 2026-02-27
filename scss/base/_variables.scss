@@ -1,0 +1,35 @@
+// =======================
+// variables
+// =======================
+
+:root {
+    // breakpoints
+    --bp-small: 400px;
+    --bp-medium: 600px;
+    --bp-large: 800px;
+    --bp-huge: 1000px;
+    --bp-colossal: 1200px;
+
+    // colors
+    --s0: #000; // black
+    --s1: #282828; // gray - dark
+    --s2: #505050; // gray - medium
+    --s3: #d3d3d3; // gray - light
+    --sf: #fff; // white
+
+    --m1: hsl(247, 18%, 29%); // regal navy - ##403D58
+    --m2: hsl(13, 97%, 66%); // magenta bloom - #FC7753
+
+    // fonts
+    --serif: "Bree Serif", serif;
+    --sans: "Source Sans 3", sans-serif;
+    --fontsize: 1rem;
+    --lineheight: 1.5;
+
+    // border
+    --borderradius: 0.5rem;
+
+    // transition
+    --transtime: 0.25s;
+    --transeffect: ease;
+}
