@@ -1,8 +1,12 @@
+// selection
+// ======================================
 ::selection {
     background-color: var(--m2);
     color: var(--sf);
 }
 
+// headers
+// ======================================
 %headers {
     margin: 0;
     padding: 0;
@@ -37,6 +41,8 @@ h6 {
     @extend %headers;
 }
 
+// text
+// ======================================
 p {
     margin: 0 0 var(--fontsize) 0;
     padding: 0;
@@ -47,6 +53,24 @@ em {
     color: var(--s2);
 }
 
+a {
+    color: var(--m1);
+    transition: all 0.25s;
+    &:hover,
+    &:active,
+    &:focus {
+        color: var(--m2);
+    }
+}
+
+blockquote {
+    max-width: 70ch;
+    padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+    box-shadow: inset 0.25rem 0 0 0 var(--m2);
+}
+
+// lists
+// ======================================
 ul {
     margin: 0;
     padding: 0 0 0 1rem;
@@ -82,11 +106,6 @@ ol {
     }
 }
 
-details {
-    margin: 0 0 0.5rem 0;
-    padding: 0;
-}
-
 dl {
     transition: height var(--transtime) var(--transeffect);
     dt {
@@ -98,26 +117,53 @@ dl {
     }
 }
 
-a {
-    color: var(--m1);
-    transition: all 0.25s;
-    &:hover,
-    &:focus {
-        color: var(--m2);
+// details
+// ======================================
+details {
+    margin: 0 0 0 0.5rem;
+    padding: 0;
+    interpolate-size: allow-keywords;
+    &:last-of-type {
+        margin-block-end: 1rem;
     }
-    @media print {
-        &.screen-only {
-            display: none;
+    &[open] {
+        &::details-content {
+            block-size: auto;
+        }
+        summary::marker {
+            content: "\25BD";
+        }
+    }
+    &::details-content {
+        padding-inline-start: 0.5rem;
+        block-size: 0;
+
+        transition: content-visibility, block-size;
+        transition-duration: 750ms;
+
+        transition-behavior: allow-discrete;
+        overflow: hidden;
+        @media (prefers-reduced-motion) {
+            transition-duration: 0;
+        }
+    }
+    summary {
+        padding-inline-start: 0.5rem;
+        cursor: pointer;
+        font-weight: bold;
+        list-style-position: outside;
+        &::marker {
+            display: inline-block;
+            content: "\25B7";
+            font-size: 0.75rem;
+            line-height: 1;
+            color: var(--m2);
         }
     }
 }
 
-blockquote {
-    max-width: 70ch;
-    padding: 0.5rem 0.5rem 0.5rem 1.25rem;
-    box-shadow: inset 0.25rem 0 0 0 var(--m2);
-}
-
+// tables
+// ======================================
 table {
     margin: 0 0 0.5rem 0;
     padding: 0;
@@ -138,27 +184,5 @@ table {
         padding: 0.5rem;
         text-align: left;
         border-bottom: 1px solid var(--s3);
-    }
-}
-
-// ======================================
-// progress bar
-// ======================================
-.progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 10px;
-    background: var(--m2);
-    animation: grow-progress linear;
-    animation-timeline: scroll();
-}
-
-@keyframes grow-progress {
-    from {
-        width: 0%;
-    }
-    to {
-        width: 100%;
     }
 }

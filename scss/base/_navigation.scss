@@ -1,3 +1,5 @@
+// navigation
+// ======================================
 nav {
     margin: 0;
     padding: 0;
@@ -45,5 +47,50 @@ nav {
         &:focus {
             text-decoration: underline;
         }
+    }
+}
+
+// back to top
+// ======================================
+nav#back-to-top {
+    all: unset;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    transition: all var(--transtime) var(--transeffect);
+
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: cover 25% cover 35%;
+    a {
+        display: block;
+        padding: 0.5rem;
+        background-color: var(--m1);
+        color: var(--sf);
+        text-decoration: none;
+        border-radius: 0.25rem;
+
+        &:before {
+            content: "\25B3";
+            font-size: 0.75rem;
+            margin-inline-end: 0.25rem;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: var(--m2);
+            color: var(--s1);
+        }
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

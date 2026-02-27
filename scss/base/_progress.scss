@@ -1,0 +1,22 @@
+// progress bar
+// ======================================
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 10px;
+    background: var(--m2);
+    background: linear-gradient(90deg, var(--m1) 0%, var(--m2) 100%);
+    animation: grow-progress linear;
+    animation-timeline: scroll();
+    transition: all var(--transtime) var(--transeffect);
+}
+
+@keyframes grow-progress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}

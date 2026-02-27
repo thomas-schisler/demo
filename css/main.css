@@ -264,45 +264,11 @@ header {
   -webkit-box-shadow: inset 0 -1px 0 var(--s3);
           box-shadow: inset 0 -1px 0 var(--s3);
 }
-@media (min-width: var(--bp-large)) {
-  header {
-    -webkit-box-flex: 1;
-        -ms-flex: 1 0 100%;
-            flex: 1 0 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-}
 @media print {
   header {
     -webkit-box-shadow: none;
             box-shadow: none;
     width: 100%;
-    clear: both;
-  }
-}
-header figure {
-  margin: 0 auto 1rem auto;
-  padding: 0;
-  width: 150px;
-  height: 150px;
-}
-@media (min-width: var(--bp-large)) {
-  header figure {
-    float: left;
-    margin: 0 1rem 0 0;
-  }
-}
-@media print {
-  header figure {
-    display: none;
   }
 }
 
@@ -338,6 +304,7 @@ main {
 }
 
 section {
+  min-height: 50vh;
   margin: 0;
   padding: 0;
 }
@@ -397,6 +364,22 @@ em {
   color: var(--s2);
 }
 
+a {
+  color: var(--m1);
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+a:hover, a:active, a:focus {
+  color: var(--m2);
+}
+
+blockquote {
+  max-width: 70ch;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  -webkit-box-shadow: inset 0.25rem 0 0 0 var(--m2);
+          box-shadow: inset 0.25rem 0 0 0 var(--m2);
+}
+
 ul {
   margin: 0;
   padding: 0 0 0 1rem;
@@ -431,11 +414,6 @@ ol li::marker {
   color: var(--m2);
 }
 
-details {
-  margin: 0 0 0.5rem 0;
-  padding: 0;
-}
-
 dl {
   -webkit-transition: height var(--transtime) var(--transeffect);
   transition: height var(--transtime) var(--transeffect);
@@ -448,25 +426,51 @@ dl dd {
   margin: 0 0 10px 0;
 }
 
-a {
-  color: var(--m1);
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s;
+details {
+  margin: 0 0 0 0.5rem;
+  padding: 0;
+  interpolate-size: allow-keywords;
 }
-a:hover, a:focus {
-  color: var(--m2);
+details:last-of-type {
+  -webkit-margin-after: 1rem;
+          margin-block-end: 1rem;
 }
-@media print {
-  a.screen-only {
-    display: none;
+details[open]::details-content {
+  block-size: auto;
+}
+details[open] summary::marker {
+  content: "▽";
+}
+details::details-content {
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+  block-size: 0;
+  -webkit-transition: content-visibility, block-size;
+  transition: content-visibility, block-size;
+  -webkit-transition-duration: 750ms;
+          transition-duration: 750ms;
+  transition-behavior: allow-discrete;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion) {
+  details::details-content {
+    -webkit-transition-duration: 0;
+            transition-duration: 0;
   }
 }
-
-blockquote {
-  max-width: 70ch;
-  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
-  -webkit-box-shadow: inset 0.25rem 0 0 0 var(--m2);
-          box-shadow: inset 0.25rem 0 0 0 var(--m2);
+details summary {
+  -webkit-padding-start: 0.5rem;
+          padding-inline-start: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  list-style-position: outside;
+}
+details summary::marker {
+  display: inline-block;
+  content: "▷";
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--m2);
 }
 
 table {
@@ -490,34 +494,6 @@ table td {
   border-bottom: 1px solid var(--s3);
 }
 
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 10px;
-  background: var(--m2);
-  -webkit-animation: grow-progress linear;
-          animation: grow-progress linear;
-  animation-timeline: scroll();
-}
-
-@-webkit-keyframes grow-progress {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes grow-progress {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
 nav {
   margin: 0;
   padding: 0;
@@ -572,11 +548,95 @@ nav a:hover, nav a:focus {
   text-decoration: underline;
 }
 
-.skip-to-content a {
-  margin: 0;
-  padding: calc(var(--font-size) / 2);
-  position: absolute;
+nav#back-to-top {
+  all: unset;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  -webkit-transition: all var(--transtime) var(--transeffect);
+  transition: all var(--transtime) var(--transeffect);
+  -webkit-animation: reveal linear both;
+          animation: reveal linear both;
+  animation-timeline: view();
+  animation-range: cover 25% cover 35%;
+}
+nav#back-to-top a {
+  display: block;
+  padding: 0.5rem;
+  background-color: var(--m1);
+  color: var(--sf);
+  text-decoration: none;
+  border-radius: 0.25rem;
+}
+nav#back-to-top a:before {
+  content: "△";
+  font-size: 0.75rem;
+  -webkit-margin-end: 0.25rem;
+          margin-inline-end: 0.25rem;
+}
+nav#back-to-top a:hover, nav#back-to-top a:focus {
+  background-color: var(--m2);
+  color: var(--s1);
+}
+
+@-webkit-keyframes reveal {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(1rem);
+            transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(1rem);
+            transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+.progress-bar {
+  position: fixed;
   top: 0;
+  left: 0;
+  height: 10px;
+  background: var(--m2);
+  background: -webkit-gradient(linear, left top, right top, from(var(--m1)), to(var(--m2)));
+  background: linear-gradient(90deg, var(--m1) 0%, var(--m2) 100%);
+  -webkit-animation: grow-progress linear;
+          animation: grow-progress linear;
+  animation-timeline: scroll();
+  -webkit-transition: all var(--transtime) var(--transeffect);
+  transition: all var(--transtime) var(--transeffect);
+}
+
+@-webkit-keyframes grow-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes grow-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.skip-to-content a {
   background-color: rgba(var(--s1), 0.8);
   -webkit-transform: translate(0, -100%);
           transform: translate(0, -100%);
@@ -584,10 +644,37 @@ nav a:hover, nav a:focus {
   transition: all 0.5s;
   color: var(--sf);
 }
+.skip-to-content a:hover {
+  background-color: rgba(var(--s1), 1);
+}
+
+.skip-to-content a {
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  position: absolute;
+  top: 0;
+  display: block;
+  padding: 0.5rem;
+  background-color: var(--m1);
+  color: var(--sf);
+  text-decoration: none;
+  border-radius: 0.25rem;
+  outline: none;
+}
+.skip-to-content a:before {
+  content: "▽";
+  font-size: 0.75rem;
+  -webkit-margin-end: 0.25rem;
+          margin-inline-end: 0.25rem;
+}
+.skip-to-content a:hover {
+  background-color: var(--m2);
+  color: var(--s1);
+}
 .skip-to-content a:focus {
   -webkit-transform: translate(0, 0);
           transform: translate(0, 0);
-}
-.skip-to-content a:hover {
-  background-color: rgba(var(--s1), 1);
+  text-decoration: none;
 }

@@ -1,16 +1,39 @@
 .skip-to-content a {
-    margin: 0;
-    padding: calc(var(--font-size) / 2);
-    position: absolute;
-    top: 0;
     background-color: rgba(var(--s1), 0.8);
     transform: translate(0, -100%);
     transition: all 0.5s;
     color: var(--sf);
-    &:focus {
-        transform: translate(0, 0);
-    }
     &:hover {
         background-color: rgba(var(--s1), 1);
+    }
+}
+
+.skip-to-content {
+    a {
+        transform: translate(0, -100%);
+        transition: all 0.5s;
+        position: absolute;
+        top: 0;
+        display: block;
+        padding: 0.5rem;
+        background-color: var(--m1);
+        color: var(--sf);
+        text-decoration: none;
+        border-radius: 0.25rem;
+        outline: none;
+
+        &:before {
+            content: "\25BD";
+            font-size: 0.75rem;
+            margin-inline-end: 0.25rem;
+        }
+        &:hover {
+            background-color: var(--m2);
+            color: var(--s1);
+        }
+        &:focus {
+            transform: translate(0, 0);
+            text-decoration: none;
+        }
     }
 }
