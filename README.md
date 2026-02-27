@@ -1,1 +1,1 @@
-(Demo Site)[https://thomas-schisler.github.io/demo/]
+[Demo Site](https://thomas-schisler.github.io/demo/)
