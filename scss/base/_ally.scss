@@ -1,19 +1,11 @@
-.skip-to-content a {
-    background-color: rgba(var(--s1), 0.8);
-    transform: translate(0, -100%);
-    transition: all 0.5s;
-    color: var(--sf);
-    &:hover {
-        background-color: rgba(var(--s1), 1);
-    }
-}
-
 .skip-to-content {
     a {
-        transform: translate(0, -100%);
-        transition: all 0.5s;
         position: absolute;
-        top: 0;
+        top: 1rem;
+        left: 1rem;
+        transform: translate(0, calc(-100% + -1rem));
+        z-index: 10;
+        transition: all 0.5s;
         display: block;
         padding: 0.5rem;
         background-color: var(--m1);
@@ -37,3 +29,15 @@
         }
     }
 }
+
+// .visually-hidden {
+//     position: absolute;
+//     width: 0;
+//     height: 0;
+//     padding: 0;
+//     margin: 0;
+//     overflow: hidden;
+//     clip: rect(0, 0, 0, 0);
+//     white-space: nowrap;
+//     border: 0;
+// }

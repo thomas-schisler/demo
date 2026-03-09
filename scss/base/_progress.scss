@@ -4,12 +4,12 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 10px;
+    height: 0.5rem;
     background: var(--m2);
-    background: linear-gradient(90deg, var(--m1) 0%, var(--m2) 100%);
     animation: grow-progress linear;
     animation-timeline: scroll();
     transition: all var(--transtime) var(--transeffect);
+    z-index: 1;
 }
 
 @keyframes grow-progress {

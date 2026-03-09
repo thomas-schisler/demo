@@ -46,6 +46,7 @@ h6 {
 p {
     margin: 0 0 var(--fontsize) 0;
     padding: 0;
+    // text-indent: 2rem;
 }
 
 strong,
@@ -122,7 +123,6 @@ dl {
 details {
     margin: 0 0 0 0.5rem;
     padding: 0;
-    interpolate-size: allow-keywords;
     &:last-of-type {
         margin-block-end: 1rem;
     }
@@ -184,5 +184,31 @@ table {
         padding: 0.5rem;
         text-align: left;
         border-bottom: 1px solid var(--s3);
+    }
+}
+
+// images
+// ======================================
+figure {
+    margin: 0 0 0.5rem 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    animation: img-fade linear forwards;
+    animation-timeline: view();
+    animation-range: entry 0% exit -5%;
+    img {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+}
+@keyframes img-fade {
+    from {
+        scale: 0.95;
+        opacity: 0;
+    }
+    to {
+        scale: 1;
+        opacity: 1;
     }
 }
