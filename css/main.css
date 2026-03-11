@@ -219,10 +219,14 @@ html {
   margin: 0;
   padding: 0;
   background: var(--sf);
+  background: light-dark(var(--sf), var(--s1));
   font-family: var(--sans);
   font-size: var(--fontsize);
   line-height: var(--lineheight);
   color: var(--s2);
+  color: light-dark(var(--s2), var(--s3));
+  color-scheme: light dark;
+  accent-color: var(--m2);
 }
 @media (prefers-reduced-motion: no-preference) {
   html {
@@ -234,17 +238,13 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 0;
-}
-@media (min-width: 1200px) {
-  body {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
-  }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
 }
 @media print {
   body {
@@ -258,7 +258,6 @@ main.container,
 nav.container {
   width: 100%;
   max-width: 1200px;
-  height: auto;
   margin: 0 auto;
   padding: 0.5rem 1rem;
 }
@@ -278,21 +277,16 @@ nav.container > .inner {
   background-image: url(https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg);
   background-size: cover;
   background-position: center center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  overflow: hidden;
+  background-attachment: fixed;
   color: var(--sf);
-  overflow: hidden;
   isolation: isolate;
 }
 #header > .inner {
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+#header > .inner > .inner-wrapper {
   position: relative;
   padding: 1rem;
   text-wrap: balance;
@@ -300,32 +294,42 @@ nav.container > .inner {
   z-index: 1;
   text-shadow: 0.25rem 0.25rem 0.25rem var(--s0);
 }
-#header > .inner:before {
+#header > .inner > .inner-wrapper:before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: var(--s0);
+  opacity: 0.65;
   -webkit-filter: blur(0.25em);
           filter: blur(0.25em);
 }
 
-section {
-  -webkit-padding-before: 3.5rem;
-          padding-block-start: 3.5rem;
-  min-height: 35dvh;
+@-webkit-keyframes action {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  75%, 100% {
+    -webkit-transform: translate(0, 1.5dvh);
+            transform: translate(0, 1.5dvh);
+  }
 }
 
-aside {
-  margin: 0;
-  padding: 0;
+@keyframes action {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  75%, 100% {
+    -webkit-transform: translate(0, 1.5dvh);
+            transform: translate(0, 1.5dvh);
+  }
 }
-
 ::-moz-selection {
   background-color: var(--m2);
   color: var(--sf);
 }
-
 ::selection {
   background-color: var(--m2);
   color: var(--sf);
@@ -353,6 +357,7 @@ h2 {
 h3 {
   font-weight: 400;
   color: var(--s1);
+  color: light-dark(var(--s1), var(--s3));
 }
 
 h4 {
@@ -369,15 +374,18 @@ p {
 strong,
 em {
   color: var(--s2);
+  color: light-dark(var(--s2), var(--s3));
 }
 
 a {
-  color: var(--m1);
+  color: var(--m2);
+  color: light-dark(var(--m2), var(--m2));
   -webkit-transition: all 0.25s;
   transition: all 0.25s;
 }
 a:hover, a:active, a:focus {
   color: var(--m2);
+  color: light-dark(var(--m2), var(--s3));
 }
 
 blockquote {
@@ -487,10 +495,12 @@ table {
   width: 100%;
 }
 table tr:nth-child(even) {
-  background-color: var(--s3);
+  background: var(--s3);
+  background: light-dark(var(--s3), var(--s1));
 }
 table tr:nth-child(odd) {
-  background-color: var(--s);
+  background: var(--sf);
+  background: light-dark(var(--sf), var(--s2));
 }
 table th,
 table td {
@@ -498,6 +508,7 @@ table td {
   padding: 0.5rem;
   text-align: left;
   border-bottom: 1px solid var(--s3);
+  border-bottom: 1px solid light-dark(var(--s3), var(--sf));
 }
 
 figure {
@@ -508,7 +519,7 @@ figure {
   -webkit-animation: img-fade linear forwards;
           animation: img-fade linear forwards;
   animation-timeline: view();
-  animation-range: entry 0% exit -5%;
+  animation-range: entry 0% exit -25%;
 }
 figure img {
   width: 100%;
@@ -517,7 +528,7 @@ figure img {
 
 @-webkit-keyframes img-fade {
   from {
-    scale: 0.95;
+    scale: 0.75;
     opacity: 0;
   }
   to {
@@ -528,7 +539,7 @@ figure img {
 
 @keyframes img-fade {
   from {
-    scale: 0.95;
+    scale: 0.75;
     opacity: 0;
   }
   to {
@@ -536,6 +547,11 @@ figure img {
     opacity: 1;
   }
 }
+input {
+  caret-shape: block;
+  caret-color: var(--m2);
+}
+
 nav {
   margin: 0;
   padding: 0;
@@ -588,7 +604,8 @@ nav a:hover, nav a:focus {
 nav#primary {
   position: sticky;
   top: 0;
-  background-color: var(--sf);
+  background: var(--sf);
+  background: light-dark(var(--sf), var(--s1));
   max-width: 100%;
   isolation: isolate;
   z-index: 1;
@@ -600,6 +617,14 @@ nav#primary {
           animation-fill-mode: forwards;
   animation-timeline: view(block);
   animation-range: entry 0 entry 100dvh;
+}
+nav#primary a {
+  color: var(--m2);
+  color: light-dark(var(--m2), var(--m2));
+}
+nav#primary a:hover, nav#primary a:active, nav#primary a:focus {
+  color: var(--m1);
+  color: light-dark(var(--m1), var(--sf));
 }
 
 @-webkit-keyframes scroll-shadow {
@@ -645,8 +670,10 @@ nav#back-to-top {
 nav#back-to-top a {
   display: block;
   padding: 0.5rem;
-  background-color: var(--m1);
+  background: var(--m1);
+  background: light-dark(var(--m1), var(--m2));
   color: var(--sf);
+  color: light-dark(var(--sf), var(--s1));
   text-decoration: none;
   border-radius: 0.25rem;
 }
@@ -658,7 +685,9 @@ nav#back-to-top a:before {
 }
 nav#back-to-top a:hover, nav#back-to-top a:focus {
   background-color: var(--m2);
+  background: light-dark(var(--m2), var(--m1));
   color: var(--s1);
+  color: light-dark(var(--s1), var(--sf));
 }
 
 @-webkit-keyframes reveal {

@@ -28,6 +28,7 @@ h3 {
     @extend %headers;
     font-weight: 400;
     color: var(--s1);
+    color: light-dark(var(--s1), var(--s3));
 }
 h4 {
     @extend %headers;
@@ -52,15 +53,18 @@ p {
 strong,
 em {
     color: var(--s2);
+    color: light-dark(var(--s2), var(--s3));
 }
 
 a {
-    color: var(--m1);
+    color: var(--m2);
+    color: light-dark(var(--m2), var(--m2));
     transition: all 0.25s;
     &:hover,
     &:active,
     &:focus {
         color: var(--m2);
+        color: light-dark(var(--m2), var(--s3));
     }
 }
 
@@ -172,10 +176,12 @@ table {
     width: 100%;
     tr {
         &:nth-child(even) {
-            background-color: var(--s3);
+            background: var(--s3);
+            background: light-dark(var(--s3), var(--s1));
         }
         &:nth-child(odd) {
-            background-color: var(--s);
+            background: var(--sf);
+            background: light-dark(var(--sf), var(--s2));
         }
     }
     th,
@@ -184,6 +190,7 @@ table {
         padding: 0.5rem;
         text-align: left;
         border-bottom: 1px solid var(--s3);
+        border-bottom: 1px solid light-dark(var(--s3), var(--sf));
     }
 }
 
@@ -196,7 +203,7 @@ figure {
     height: auto;
     animation: img-fade linear forwards;
     animation-timeline: view();
-    animation-range: entry 0% exit -5%;
+    animation-range: entry 0% exit -25%;
     img {
         width: 100%;
         aspect-ratio: 16/9;
@@ -204,11 +211,18 @@ figure {
 }
 @keyframes img-fade {
     from {
-        scale: 0.95;
+        scale: 0.75;
         opacity: 0;
     }
     to {
         scale: 1;
         opacity: 1;
     }
+}
+
+// form elements
+// ======================================
+input {
+    caret-shape: block;
+    caret-color: var(--m2);
 }

@@ -46,37 +46,11 @@ nav {
     }
 }
 
-// primary
-// ======================================
-// nav#primary {
-//     position: sticky;
-//     top: 0;
-//     background-color: var(--sf);
-//     max-width: 100%;
-//     isolation: isolate;
-//     z-index: 1;
-//     box-shadow: 0 8px 16px rgba(0, 0, 0, calc(0.12 * var(--shadow-strength)));
-//     animation: scroll-shadow linear forwards;
-//     animation-timeline: view();
-//     animation-range-start: entry 5%;
-//     animation-range-end: exit 5% entry 100%; //entry 15% exit 95%;
-// }
-
-// @keyframes scroll-shadow {
-//     from {
-//         box-shadow: hsla(0 0% 0% / 0) 0 0 0;
-//         background: red;
-//     }
-//     to {
-//         box-shadow: var(--s1) 0 0.5rem 1rem;
-//         background: blue;
-//     }
-// }
-
 nav#primary {
     position: sticky;
     top: 0;
-    background-color: var(--sf);
+    background: var(--sf);
+    background: light-dark(var(--sf), var(--s1));
     max-width: 100%;
     isolation: isolate;
     z-index: 1;
@@ -85,6 +59,16 @@ nav#primary {
     animation-fill-mode: forwards;
     animation-timeline: view(block);
     animation-range: entry 0 entry 100dvh;
+    a {
+        color: var(--m2);
+        color: light-dark(var(--m2), var(--m2));
+        &:hover,
+        &:active,
+        &:focus {
+            color: var(--m1);
+            color: light-dark(var(--m1), var(--sf));
+        }
+    }
 }
 
 @keyframes scroll-shadow {
@@ -118,8 +102,10 @@ nav#back-to-top {
     a {
         display: block;
         padding: 0.5rem;
-        background-color: var(--m1);
+        background: var(--m1);
+        background: light-dark(var(--m1), var(--m2));
         color: var(--sf);
+        color: light-dark(var(--sf), var(--s1));
         text-decoration: none;
         border-radius: 0.25rem;
 
@@ -132,7 +118,9 @@ nav#back-to-top {
         &:hover,
         &:focus {
             background-color: var(--m2);
+            background: light-dark(var(--m2), var(--m1));
             color: var(--s1);
+            color: light-dark(var(--s1), var(--sf));
         }
     }
 }

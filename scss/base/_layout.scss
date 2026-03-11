@@ -21,10 +21,14 @@ html {
     margin: 0;
     padding: 0;
     background: var(--sf);
+    background: light-dark(var(--sf), var(--s1));
     font-family: var(--sans);
     font-size: var(--fontsize);
     line-height: var(--lineheight);
     color: var(--s2);
+    color: light-dark(var(--s2), var(--s3));
+    color-scheme: light dark; // user prefrences
+    accent-color: var(--m2);
     @media (prefers-reduced-motion: no-preference) {
         scroll-behavior: smooth;
     }
@@ -34,10 +38,8 @@ body {
     width: 100%;
     margin: 0 auto;
     padding: 0;
-    @media (min-width: $bp-colossal) {
-        display: flex;
-        flex-flow: row wrap;
-    }
+    display: flex;
+    flex-flow: row wrap;
     @media print {
         font-size: 70%;
     }
@@ -50,7 +52,6 @@ nav {
     &.container {
         width: 100%;
         max-width: $bp-colossal;
-        height: auto;
         margin: 0 auto;
         padding: 0.5rem 1rem;
         > .inner {
@@ -68,37 +69,62 @@ nav {
     background-image: url(https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg);
     background-size: cover;
     background-position: center center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    background-attachment: fixed;
     color: var(--sf);
-    overflow: hidden;
     isolation: isolate;
+
+    // // picture me scrolling (parallax-ish)
+    // scroll-timeline-name: --hero;
+    // overflow: scroll;
+    // &::-webkit-scrollbar {
+    //     display: none;
+    // }
+    // &:after {
+    //     content: "";
+    //     position: absolute;
+    //     inset: 0;
+    //     height: 101dvh;
+    //     background-image: url(https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg);
+    //     background-size: cover;
+    //     background-position: center center;
+    //     background-attachment: fixed;
+    //     animation: action linear;
+    //     animation-timeline: --hero;
+    //     transition: all ease;
+    //     z-index: -1;
+    // }
+
     > .inner {
-        position: relative;
-        padding: 1rem;
-        text-wrap: balance;
-        max-width: 70ch;
-        z-index: 1;
-        text-shadow: 0.25rem 0.25rem 0.25rem var(--s0);
-        &:before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background-color: rgba(#000, 0.65);
-            filter: blur(0.25em);
+        height: 100%;
+        display: grid;
+        place-content: center;
+
+        > .inner-wrapper {
+            position: relative;
+            padding: 1rem;
+            text-wrap: balance;
+            max-width: 70ch;
+            z-index: 1;
+            text-shadow: 0.25rem 0.25rem 0.25rem var(--s0);
+            &:before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                background-color: var(--s0);
+                opacity: 0.65;
+                filter: blur(0.25em);
+            }
         }
     }
 }
 
-section {
-    padding-block-start: 3.5rem;
-    min-height: 35dvh;
-}
-
-aside {
-    margin: 0;
-    padding: 0;
+@keyframes action {
+    0% {
+        transform: translate(0, 0);
+    }
+    75%,
+    100% {
+        transform: translate(0, 1.5dvh);
+    }
 }
