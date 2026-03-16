@@ -14,10 +14,9 @@
         border-radius: 0.25rem;
         outline: none;
 
-        &:before {
-            content: "\25BD";
-            font-size: 0.75rem;
-            margin-inline-end: 0.25rem;
+        &:after {
+            content: "\21E3";
+            margin-inline-start: 0.25rem;
         }
         &:hover {
             background-color: var(--m2);

@@ -274,7 +274,7 @@ nav.container > .inner {
   max-width: 100%;
   min-height: 100dvh;
   background-color: var(--s0);
-  background-image: url(https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg);
+  background-image: url(/img/landscape.png);
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -292,15 +292,15 @@ nav.container > .inner {
   text-wrap: balance;
   max-width: 70ch;
   z-index: 1;
-  text-shadow: 0.25rem 0.25rem 0.25rem var(--s0);
+  text-shadow: 0.05rem 0.05rem 0.05rem var(--s0);
 }
 #header > .inner > .inner-wrapper:before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: var(--s0);
-  opacity: 0.65;
+  background: var(--s0);
+  opacity: 0.5;
   -webkit-filter: blur(0.25em);
           filter: blur(0.25em);
 }
@@ -310,7 +310,7 @@ nav.container > .inner {
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
   }
-  75%, 100% {
+  100% {
     -webkit-transform: translate(0, 1.5dvh);
             transform: translate(0, 1.5dvh);
   }
@@ -321,7 +321,7 @@ nav.container > .inner {
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
   }
-  75%, 100% {
+  100% {
     -webkit-transform: translate(0, 1.5dvh);
             transform: translate(0, 1.5dvh);
   }
@@ -389,10 +389,18 @@ a:hover, a:active, a:focus {
 }
 
 blockquote {
-  max-width: 70ch;
+  max-width: 60ch;
   padding: 0.5rem 0.5rem 0.5rem 1.25rem;
   -webkit-box-shadow: inset 0.25rem 0 0 0 var(--m2);
           box-shadow: inset 0.25rem 0 0 0 var(--m2);
+  display: inline-block;
+  background: -webkit-gradient(linear, left top, right top, from(oklch(from var(--m2) calc(l + 0.1) c h/1)), to(oklch(from var(--m1) calc(l + 0.1) c h/1)));
+  background: linear-gradient(90deg, oklch(from var(--m2) calc(l + 0.1) c h/1), oklch(from var(--m1) calc(l + 0.1) c h/1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bolder;
+  text-wrap: balance;
 }
 
 ul {
@@ -453,7 +461,7 @@ details[open]::details-content {
   block-size: auto;
 }
 details[open] summary::marker {
-  content: "▽";
+  content: "⮟";
 }
 details::details-content {
   -webkit-padding-start: 0.5rem;
@@ -481,7 +489,7 @@ details summary {
 }
 details summary::marker {
   display: inline-block;
-  content: "▷";
+  content: "⮞";
   font-size: 0.75rem;
   line-height: 1;
   color: var(--m2);
@@ -665,7 +673,7 @@ nav#back-to-top {
   -webkit-animation: reveal linear both;
           animation: reveal linear both;
   animation-timeline: view();
-  animation-range: cover 25% cover 35%;
+  animation-range: cover 25% cover 50%;
 }
 nav#back-to-top a {
   display: block;
@@ -677,14 +685,13 @@ nav#back-to-top a {
   text-decoration: none;
   border-radius: 0.25rem;
 }
-nav#back-to-top a:before {
-  content: "△";
-  font-size: 0.75rem;
-  -webkit-margin-end: 0.25rem;
-          margin-inline-end: 0.25rem;
+nav#back-to-top a:after {
+  content: "⇡";
+  -webkit-margin-start: 0.25rem;
+          margin-inline-start: 0.25rem;
 }
 nav#back-to-top a:hover, nav#back-to-top a:focus {
-  background-color: var(--m2);
+  background: var(--m2);
   background: light-dark(var(--m2), var(--m1));
   color: var(--s1);
   color: light-dark(var(--s1), var(--sf));
@@ -763,11 +770,10 @@ nav#back-to-top a:hover, nav#back-to-top a:focus {
   border-radius: 0.25rem;
   outline: none;
 }
-.skip-to-content a:before {
-  content: "▽";
-  font-size: 0.75rem;
-  -webkit-margin-end: 0.25rem;
-          margin-inline-end: 0.25rem;
+.skip-to-content a:after {
+  content: "⇣";
+  -webkit-margin-start: 0.25rem;
+          margin-inline-start: 0.25rem;
 }
 .skip-to-content a:hover {
   background-color: var(--m2);

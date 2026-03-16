@@ -66,14 +66,14 @@ nav {
     max-width: 100%;
     min-height: 100dvh;
     background-color: var(--s0);
-    background-image: url(https://images.pexels.com/photos/221387/pexels-photo-221387.jpeg);
+    background-image: url(/img/landscape.png);
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
     color: var(--sf);
     isolation: isolate;
 
-    // // picture me scrolling (parallax-ish)
+    // // they see me scrolling (parallax-ish)
     // scroll-timeline-name: --hero;
     // overflow: scroll;
     // &::-webkit-scrollbar {
@@ -105,14 +105,14 @@ nav {
             text-wrap: balance;
             max-width: 70ch;
             z-index: 1;
-            text-shadow: 0.25rem 0.25rem 0.25rem var(--s0);
+            text-shadow: 0.05rem 0.05rem 0.05rem var(--s0);
             &:before {
                 content: "";
                 position: absolute;
                 inset: 0;
                 z-index: -1;
-                background-color: var(--s0);
-                opacity: 0.65;
+                background: var(--s0);
+                opacity: 0.5;
                 filter: blur(0.25em);
             }
         }
@@ -123,7 +123,6 @@ nav {
     0% {
         transform: translate(0, 0);
     }
-    75%,
     100% {
         transform: translate(0, 1.5dvh);
     }

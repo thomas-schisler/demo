@@ -69,9 +69,21 @@ a {
 }
 
 blockquote {
-    max-width: 70ch;
+    max-width: 60ch;
     padding: 0.5rem 0.5rem 0.5rem 1.25rem;
     box-shadow: inset 0.25rem 0 0 0 var(--m2);
+    display: inline-block;
+
+    background: linear-gradient(
+        90deg,
+        oklch(from var(--m2) calc(l + 0.1) c h / 1),
+        oklch(from var(--m1) calc(l + 0.1) c h / 1)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bolder;
+    text-wrap: balance;
 }
 
 // lists
@@ -135,7 +147,7 @@ details {
             block-size: auto;
         }
         summary::marker {
-            content: "\25BD";
+            content: "\2B9F";
         }
     }
     &::details-content {
@@ -158,7 +170,7 @@ details {
         list-style-position: outside;
         &::marker {
             display: inline-block;
-            content: "\25B7";
+            content: "\2B9E";
             font-size: 0.75rem;
             line-height: 1;
             color: var(--m2);
