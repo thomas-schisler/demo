@@ -274,7 +274,7 @@ nav.container > .inner {
   max-width: 100%;
   min-height: 100dvh;
   background-color: var(--s0);
-  background-image: url(/img/landscape.png);
+  background-image: url(img/landscape.png);
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
