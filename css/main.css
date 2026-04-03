@@ -272,7 +272,7 @@ nav.container > .inner {
 #header {
   position: relative;
   max-width: 100%;
-  min-height: 100dvh;
+  min-height: 100vh;
   background-color: var(--s0);
   background-image: url(../img/landscape.jpg);
   background-size: cover;
